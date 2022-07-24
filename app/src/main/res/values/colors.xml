@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--    theme_pink-->
+    <color name="colorPrimary">#FFCDD2</color>
+    <color name="colorPrimaryDark">#CB9CA1</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccentDark">#FF87AA</color>
+    <color name="colorAccentAlpha">#55FF4081</color>
+    <color name="colorAccentTag">#33FF4081</color>
+    <color name="navigationBarColor">@color/colorAccentAlpha</color>
+    <color name="background">#FFF2F6</color>
+
+    <!--    theme_purple-->
+    <color name="colorPrimaryPurple">#E969FF</color>
+    <color name="colorPrimaryDarkPurple">#AA00C7</color>
+    <color name="colorAccentPurple">#9E00C5</color>
+    <color name="colorAccentDarkPurple">#C335E2</color>
+    <color name="colorAccentAlphaPurple">#559E00C5</color>
+    <color name="colorAccentTagPurple">#339E00C5</color>
+    <color name="navigationBarColorPurple">#B06FC0</color>
+    <color name="backgroundPurple">#F9E4FF</color>
+
+    <!--    theme_blue-->
+    <color name="colorPrimaryBlue">#73D3FF</color>
+    <color name="colorPrimaryDarkBlue">#0287C3</color>
+    <color name="colorAccentBlue">#0077C2</color>
+    <color name="colorAccentDarkBlue">#3AA5E1</color>
+    <color name="colorAccentAlphaBlue">#550077C2</color>
+    <color name="colorAccentTagBlue">#330077C2</color>
+    <color name="navigationBarColorBlue">#5B97B2</color>
+    <color name="backgroundBlue">#E6F5FF</color>
+
+    <!--    theme_green-->
+    <color name="colorPrimaryGreen">#74FFDC</color>
+    <color name="colorPrimaryDarkGreen">#17BA92</color>
+    <color name="colorAccentGreen">#26A69A</color>
+    <color name="colorAccentDarkGreen">#4DD3BB</color>
+    <color name="colorAccentAlphaGreen">#5526A69A</color>
+    <color name="colorAccentTagGreen">#3326A69A</color>
+    <color name="navigationBarColorGreen">#83C1B3</color>
+    <color name="backgroundGreen">#F1FFFE</color>
+
+    <!--    theme_burgundy-->
+    <color name="colorPrimaryBurgundy">#FB6288</color>
+    <color name="colorPrimaryDarkBurgundy">#9B1032</color>
+    <color name="colorAccentBurgundy">#800020</color>
+    <color name="colorAccentDarkBurgundy">#BE3154</color>
+    <color name="colorAccentAlphaBurgundy">#55800020</color>
+    <color name="colorAccentTagBurgundy">#33800020</color>
+    <color name="navigationBarColorBurgundy">#B36261</color>
+    <color name="backgroundBurgundy">#FFE7ED</color>
+
+    <color name="notiColor">#FF4081</color>
+    <color name="notiColorPurple">#9E00C5</color>
+    <color name="notiColorBlue">#0077C2</color>
+    <color name="notiColorGreen">#26A69A</color>
+    <color name="notiColorBurgundy">#800020</color>
+
+    <color name="color_app_header">#FF4081</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_opacity">#4D000000</color>
+    <color name="gray">#404040</color>
+    <color name="disabled">#777777</color>
+
+    <color name="semi_gray">#B4B4B4</color>
+    <color name="white_opacity">#99FFFFFF</color>
+    <color name="sub_gray">#B0B0B0</color>
+    <color name="progress_background">#66FFFFFF</color>
+
+    <color name="colorRED">#EF5350</color>
+    <color name="colorBLUE">#448Aff</color>
+    <color name="colorGREEN">#4CAF50</color>
+
+    <color name="color_ienlab_pink">#FF4081</color>
+    <color name="color_ienlab_purple">#7C4DFF</color>
+    <color name="color_ienlab_skyblue">#03A9F4</color>
+    <color name="color_ienlab_blue">#3F51B5</color>
+
+    <color name="color_ienlab_pink_70">#ffc6d9</color>
+    <color name="color_ienlab_purple_70">#d8caff</color>
+    <color name="color_ienlab_skyblue_70">#b4e5fc</color>
+    <color name="color_ienlab_blue_70">#c6cbe9</color>
+
+    <color name="color_naver">#03CF5D</color>
+    <color name="color_kakao">#FEE500</color>
+    <color name="color_kakao_black">#191600</color>
+    <color name="color_kakao_black_stable">#191600</color>
+    <color name="color_tistory">#EA5220</color>
+    <color name="color_rss">#F26522</color>
+
+    <color name="indicator_unselected">#4D000000</color>
+
+    <color name="blue_grey">#455A64</color>
+    <color name="red">#F44336</color>
+    <color name="pink">#E91E63</color>
+    <color name="purple">#9C27B0</color>
+    <color name="deep_purple">#673AB7</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="blue">#2196F3</color>
+    <color name="light_blue">#03A9F4</color>
+    <color name="cyan">#00BCD4</color>
+    <color name="teal">#009688</color>
+    <color name="green">#4CAF50</color>
+    <color name="light_green">#8BC34A</color>
+    <color name="lime">#CDDC39</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="amber">#FFC107</color>
+    <color name="orange">#FF9800</color>
+    <color name="deep_orange">#FF5722</color>
+    <color name="brown">#795548</color>
+    <color name="grey">#E0E0E0</color>
+
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="cyan_50">#E0F7FA</color>
+    <color name="amber_50">#FFF8E1</color>
+    <color name="purple_50">#F3E5F5</color>
+    <color name="color_daum">#618FFC</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#8F9CA3</color>
+    <color name="card_border">#DBDBDB</color>
+    <color name="progress_bg">#E3E3E3</color>
+    <color name="anotherMonths">#E0E0E0</color>
+    <color name="category_color">#EFEFEF</color>
+
+    <!-- Realtime Blur Overlay -->
+    <color name="blur_onboarding_textbox">#CCFFFFFF</color>
+    <color name="blur_background">#66FFFFFF</color>
+    <color name="blur_groupbox">#bbFFFFFF</color>
+</resources>

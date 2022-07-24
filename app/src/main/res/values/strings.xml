@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Trainer</string>
+    <string name="add_new_event">New Event</string>
+    <string name="enlist">입대일</string>
+    <string name="discharge">입대일</string>
+    <string name="goals">Goals</string>
+    <string name="current">Current</string>
+    <string name="run">Run</string>
+    <string name="situp">Situp</string>
+    <string name="pushup">Pushup</string>
+    <string name="fill_manual">or fill out manually</string>
+    <string name="start">Start</string>
+</resources>
