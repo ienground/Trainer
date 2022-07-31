@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="fragment"
+            type="net.ienlab.trainer.fragment.OnboardingFragment2" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/colorAccentDark"
+        app:cardCornerRadius="@dimen/layout_radius"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tag_two"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/usual_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_title" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_person"
+                android:rotation="0"
+                android:alpha="0.5"
+                app:tint="@color/white"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintBottom_toTopOf="@id/guide2" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@color/white"
+                android:layout_margin="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/intro_page2_title"
+                android:textSize="@dimen/onboarding_text_size"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/usual_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_content" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/intro_page2_exp"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/usual_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_action_bg" />
+
+            <LinearLayout
+                android:id="@+id/btn_action_bg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#55FFFFFF"
+                android:padding="@dimen/usual_margin"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/name"
+                    android:layout_marginBottom="@dimen/usual_margin"
+                    app:hintTextColor="@color/colorAccentDark"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/colorAccentDark"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorAccentDark"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:textAlignment="viewEnd"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="#BIRTH"
+                    android:textColor="@color/colorAccentDark"
+                    android:textAlignment="textEnd"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
+                    android:minHeight="56dp"
+                    app:icon="@drawable/ic_cake"
+                    app:iconTint="@color/colorAccentDark"
+                    app:backgroundTint="@color/white"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

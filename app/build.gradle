@@ -29,11 +29,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
@@ -43,7 +44,7 @@ android {
 
 dependencies {
 
-    def room_version = "2.4.2"
+    def room_version = "2.4.3"
 
 //    implementationfileTree(include: ['*.jar'], dir: 'libs')
 //    implementationplatform('com.google.firebase:firebase-bom:30.3.0')
@@ -78,7 +79,7 @@ dependencies {
     def billing_version = "5.0.0"
     implementation "com.android.billingclient:billing:$billing_version"
     implementation "com.android.billingclient:billing-ktx:$billing_version"
-    def lifecycle_version = '2.5.0'
+    def lifecycle_version = '2.5.1'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
 //    implementation 'com.naver.nid:naveridlogin-android-sdk:4.4.1'
@@ -91,11 +92,10 @@ dependencies {
 //    implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 //    implementation 'com.github.bright:slf4android:0.1.6'
-//    implementation 'com.sothree.slidinguppanel:library:3.4.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
     implementation 'com.github.hadiidbouk:ChartProgressBar-Android:2.0.6'
-
+    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

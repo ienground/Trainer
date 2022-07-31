@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="fragment"
+            type="net.ienlab.trainer.fragment.OnboardingFragment5" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="@dimen/layout_radius"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tag_five"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/usual_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_title" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_run"
+                android:rotation="0"
+                android:alpha="0.5"
+                app:tint="@color/white"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintBottom_toTopOf="@id/guide2" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/intro_page5_title"
+                android:textSize="@dimen/onboarding_text_size"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/usual_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_content" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/intro_page5_exp"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/usual_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_action_bg" />
+
+            <LinearLayout
+                android:id="@+id/btn_action_bg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#55FFFFFF"
+                android:padding="@dimen/usual_margin"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" >
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_run"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="#TIME"
+                    android:textColor="@color/colorAccent"
+                    android:textAlignment="textEnd"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
+                    android:minHeight="56dp"
+                    android:layout_marginBottom="@dimen/usual_margin"
+                    app:icon="@drawable/ic_run"
+                    app:iconTint="@color/colorAccent"
+                    app:backgroundTint="@color/white"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_pushup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    android:layout_marginBottom="@dimen/usual_margin"
+                    app:hintTextColor="@color/white"
+                    app:startIconDrawable="@drawable/ic_pushup"
+                    app:startIconTint="@color/colorAccent"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
+                        android:textAlignment="viewEnd"
+                        android:maxLines="1"
+                        android:inputType="numberDecimal"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/et_situp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd"
+                    app:hintTextColor="@color/white"
+                    app:startIconDrawable="@drawable/ic_sit_up"
+                    app:startIconTint="@color/colorAccent"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
+                        android:textAlignment="viewEnd"
+                        android:maxLines="1"
+                        android:inputType="numberDecimal"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

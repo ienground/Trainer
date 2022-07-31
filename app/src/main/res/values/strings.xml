@@ -5,9 +5,38 @@
     <string name="discharge">입대일</string>
     <string name="goals">Goals</string>
     <string name="current">Current</string>
-    <string name="run">Run</string>
-    <string name="situp">Situp</string>
-    <string name="pushup">Pushup</string>
+    <string name="run">뜀뛰기</string>
+    <string name="situp">윗몸일으키기</string>
+    <string name="pushup">팔굽혀펴기</string>
     <string name="fill_manual">or fill out manually</string>
     <string name="start">Start</string>
+    <string name="name">Name</string>
+
+    <!--Onboarding-->
+    <string name="tag_one">One.</string>
+    <string name="tag_two">Two.</string>
+    <string name="tag_three">Three.</string>
+    <string name="tag_four">Four.</string>
+    <string name="tag_five">Five.</string>
+    <string name="tag_six">Six.</string>
+    <string name="intro_page0_title">환영합니다.</string>
+    <string name="intro_page0_exp">장병</string>
+    <string name="intro_page1_title">권한 허가</string>
+    <string name="intro_page1_exp">날씨 정보를 가져오기 위해 위치 권한을 허용해주세요.</string>
+    <string name="intro_page1_btn">위치 권한 허가</string>
+    <string name="intro_page1_btn_confirmed">허용됨</string>
+    <string name="intro_page2_title">장병 정보</string>
+    <string name="intro_page2_exp">프로필 사진과 이름(닉네임), 생일을 입력해주세요.</string>
+    <string name="intro_page3_title">입영일 및 전역일 입력</string>
+    <string name="intro_page3_exp">입영일 및 전역일을 입력해주세요.</string>
+    <string name="intro_page4_title">체력검정 목표</string>
+    <string name="intro_page4_exp">체력검정 목표 등급을 선택해주세요.</string>
+    <string name="intro_page5_title">현재 체력 입력</string>
+    <string name="intro_page5_exp">현재 가능한 뜀뛰기, 팔굽혀펴기, 윗몸일으키기 기록을 입력해주세요.</string>
+    <string name="intro_page6_title">Exam Deadline Reminder</string>
+    <string name="intro_page6_exp">Unit: Minute. Select the notifications you want to receive.</string>
+    <string name="nlevel">%1$d급</string>
+    <string name="special_level">특급</string>
+    <string name="permission_granted_msg">Please grant permission.</string>
+    <string name="dateFormat">yyyy.M.d</string>
 </resources>

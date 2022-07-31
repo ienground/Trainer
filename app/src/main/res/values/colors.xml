@@ -1,60 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--    theme_pink-->
-    <color name="colorPrimary">#FFCDD2</color>
-    <color name="colorPrimaryDark">#CB9CA1</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorAccentDark">#FF87AA</color>
-    <color name="colorAccentAlpha">#55FF4081</color>
+    <color name="colorPrimary">#2e7d32</color>
+    <color name="colorPrimaryDark">#005005</color>
+    <color name="colorAccent">#5d4037</color>
+    <color name="colorAccentDark">#301810</color>
+    <color name="colorAccentAlpha">#555d4037</color>
     <color name="colorAccentTag">#33FF4081</color>
     <color name="navigationBarColor">@color/colorAccentAlpha</color>
-    <color name="background">#FFF2F6</color>
 
-    <!--    theme_purple-->
-    <color name="colorPrimaryPurple">#E969FF</color>
-    <color name="colorPrimaryDarkPurple">#AA00C7</color>
-    <color name="colorAccentPurple">#9E00C5</color>
-    <color name="colorAccentDarkPurple">#C335E2</color>
-    <color name="colorAccentAlphaPurple">#559E00C5</color>
-    <color name="colorAccentTagPurple">#339E00C5</color>
-    <color name="navigationBarColorPurple">#B06FC0</color>
-    <color name="backgroundPurple">#F9E4FF</color>
-
-    <!--    theme_blue-->
-    <color name="colorPrimaryBlue">#73D3FF</color>
-    <color name="colorPrimaryDarkBlue">#0287C3</color>
-    <color name="colorAccentBlue">#0077C2</color>
-    <color name="colorAccentDarkBlue">#3AA5E1</color>
-    <color name="colorAccentAlphaBlue">#550077C2</color>
-    <color name="colorAccentTagBlue">#330077C2</color>
-    <color name="navigationBarColorBlue">#5B97B2</color>
-    <color name="backgroundBlue">#E6F5FF</color>
-
-    <!--    theme_green-->
-    <color name="colorPrimaryGreen">#74FFDC</color>
-    <color name="colorPrimaryDarkGreen">#17BA92</color>
-    <color name="colorAccentGreen">#26A69A</color>
-    <color name="colorAccentDarkGreen">#4DD3BB</color>
-    <color name="colorAccentAlphaGreen">#5526A69A</color>
-    <color name="colorAccentTagGreen">#3326A69A</color>
-    <color name="navigationBarColorGreen">#83C1B3</color>
-    <color name="backgroundGreen">#F1FFFE</color>
-
-    <!--    theme_burgundy-->
-    <color name="colorPrimaryBurgundy">#FB6288</color>
-    <color name="colorPrimaryDarkBurgundy">#9B1032</color>
-    <color name="colorAccentBurgundy">#800020</color>
-    <color name="colorAccentDarkBurgundy">#BE3154</color>
-    <color name="colorAccentAlphaBurgundy">#55800020</color>
-    <color name="colorAccentTagBurgundy">#33800020</color>
-    <color name="navigationBarColorBurgundy">#B36261</color>
-    <color name="backgroundBurgundy">#FFE7ED</color>
-
-    <color name="notiColor">#FF4081</color>
-    <color name="notiColorPurple">#9E00C5</color>
-    <color name="notiColorBlue">#0077C2</color>
-    <color name="notiColorGreen">#26A69A</color>
-    <color name="notiColorBurgundy">#800020</color>
+    <color name="notiColor">@color/colorPrimary</color>
 
     <color name="color_app_header">#FF4081</color>
 
