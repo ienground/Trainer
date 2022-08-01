@@ -1,9 +1,11 @@
 package net.ienlab.trainer.activity
 
+import android.Manifest
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +16,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.common.api.Api
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,16 +25,20 @@ import kotlinx.coroutines.launch
 import net.ienlab.trainer.R
 import net.ienlab.trainer.adapter.OnboardingPageAdapter
 import net.ienlab.trainer.adapter.OnboardingPageAdapter.Companion.PAGE_NUMBER
+import net.ienlab.trainer.constant.ApiKey
 import net.ienlab.trainer.constant.SharedKey
 import net.ienlab.trainer.databinding.ActivityOnboardingBinding
 import net.ienlab.trainer.fragment.*
-//import net.ienlab.blogplanner.room.PostPlanDatabase
+import net.ienlab.trainer.room.TrainingDatabase //import net.ienlab.blogplanner.room.PostPlanDatabase
+import net.ienlab.trainer.room.TrainingEntity
 import net.ienlab.trainer.utils.MyUtils
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.net.ssl.HttpsURLConnection
 import kotlin.system.exitProcess
 
@@ -50,17 +58,23 @@ class OnboardingActivity : AppCompatActivity(),
     lateinit var binding: ActivityOnboardingBinding
 
     lateinit var sharedPreferences: SharedPreferences
+    private var trainingDatabase: TrainingDatabase? = null
+    val cutlineMap: MutableMap<String, Triple<Int, Int, Int>> = mutableMapOf()
+    val cutlineAge: MutableList<Int> = mutableListOf()
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_onboarding)
         binding.activity = this
 
         sharedPreferences = getSharedPreferences("${packageName}_preferences", Context.MODE_PRIVATE)
+        trainingDatabase = TrainingDatabase.getInstance(this)
 
         // 데이터 초기화
         sharedPreferences.edit().clear().apply()
-
+        sharedPreferences.edit().putInt(SharedKey.GOAL_LV, 3).apply()
+        deleteDatabase("TrainingData.db")
         var prePosition = -1
 
         binding.viewPager.setPageTransformer(MarginPageTransformer(MyUtils.dpToPx(this, 16f).toInt()))
@@ -96,22 +110,43 @@ class OnboardingActivity : AppCompatActivity(),
             }
         })
         binding.btnFine.setOnClickListener {
-//            sharedPreferences.edit().putBoolean(SharedKey.IS_FIRST_VISIT, false).apply()
-//            finish()
-//            startActivity(Intent(this, MainActivity::class.java))
-//            getCutline()
+            if (sharedPreferences.getString(SharedKey.NICKNAME, "") != "" && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                sharedPreferences.edit().putBoolean(SharedKey.IS_FIRST_VISIT, false).apply()
+                GlobalScope.launch(Dispatchers.IO) {
+                    sharedPreferences.getInt(SharedKey.TEMP_RUN, -1).let {
+                        if (it != -1) trainingDatabase?.getDao()?.add(TrainingEntity(System.currentTimeMillis(), TrainingEntity.TYPE_RUN, it))
+                    }
+                    sharedPreferences.getInt(SharedKey.TEMP_PUSHUP, -1).let {
+                        if (it != -1) trainingDatabase?.getDao()?.add(TrainingEntity(System.currentTimeMillis(), TrainingEntity.TYPE_PUSHUP, it))
+                    }
+                    sharedPreferences.getInt(SharedKey.TEMP_SITUP, -1).let {
+                        if (it != -1) trainingDatabase?.getDao()?.add(TrainingEntity(System.currentTimeMillis(), TrainingEntity.TYPE_SITUP, it))
+                    }
+                }
+                finish()
+                startActivity(Intent(this, MainActivity::class.java))
+            } else if (sharedPreferences.getString(SharedKey.NICKNAME, "") == "") {
+                Snackbar.make(window.decorView.rootView, getString(R.string.err_name_not_filled), Snackbar.LENGTH_SHORT).show()
+            } else if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Snackbar.make(window.decorView.rootView, getString(R.string.permission_granted_msg), Snackbar.LENGTH_SHORT).show()
+            } else {
+                Snackbar.make(window.decorView.rootView, getString(R.string.err_name_and_permission), Snackbar.LENGTH_SHORT).show()
+            }
+
+            getCutline()
         }
+
+        getCutline()
 
     }
     
     @OptIn(DelicateCoroutinesApi::class) 
     private fun getCutline() {
-        val url = URL("https://openapi.mnd.go.kr/3832313639343638353132353532313335/json/DS_MND_MILPRSN_PHSTR_OFAPRV/1/233/")
+        val url = URL("https://openapi.mnd.go.kr/${ApiKey.MND_KEY}/json/DS_MND_MILPRSN_PHSTR_OFAPRV/1/233/")
     
         GlobalScope.launch(Dispatchers.IO) {
             val con = (url.openConnection() as HttpsURLConnection).apply {
                 requestMethod = "GET"
-                //                setRequestProperty("Authorization", header)
                 connectTimeout = 15000
             }
             con.connect()
@@ -124,9 +159,51 @@ class OnboardingActivity : AppCompatActivity(),
             }
 
             val response = br.readLine(); br.close()
-            Log.d(TAG, response)
+//            Log.d(TAG, response)
             try {
-                val jObject = JSONObject(response).getJSONObject("response")
+                val jObject = JSONObject(response)//.getJSONObject("response")
+                val data = jObject.getJSONObject("DS_MND_MILPRSN_PHSTR_OFAPRV").getJSONArray("row")
+                Log.d(TAG, data.length().toString())
+                for (i in 0 until data.length()) {
+                    val obj = data.getJSONObject(i)
+                    val ageUpper = obj.getString("age_uprlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                    val ageLower = obj.getString("age_lwlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                    val grade = obj.getString("grd")
+                    val type = obj.getString("kind")
+                    var standardLower = -1
+                    var standardUpper = -1
+
+                    Log.d(TAG, type.toString())
+                    when (type) {
+                        "3Km달리기" -> {
+                            val timeFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
+                            standardUpper = obj.getString("std_uprlmtprcdc").let {
+                                if (it != "") {
+                                    val time = Calendar.getInstance().apply { time = timeFormat.parse(it) }
+                                    time.get(Calendar.MINUTE) * 60 + time.get(Calendar.SECOND)
+                                } else -1
+                            }
+                            standardLower = obj.getString("std_lwlmtprcdc").let {
+                                if (it != "") {
+                                    val time = Calendar.getInstance().apply { time = timeFormat.parse(it) }
+                                    time.get(Calendar.MINUTE) * 60 + time.get(Calendar.SECOND)
+                                } else -1
+                            }
+                        }
+
+                        "팔굽혀펴기(2분)" -> {
+                            standardUpper = obj.getString("std_uprlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                            standardLower = obj.getString("std_lwlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                        }
+
+                        "윗몸일으키기(2분)" -> {
+                            standardUpper = obj.getString("std_uprlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                            standardLower = obj.getString("std_lwlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                        }
+                    }
+                }
+
+                // 차례대로 확인하며 Map(검색용)과 List(나이확인용) 완성
 
             } catch (e: Exception) {
                 e.printStackTrace()

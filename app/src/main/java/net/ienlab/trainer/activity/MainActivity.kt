@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import net.ienlab.trainer.R
+import net.ienlab.trainer.constant.ApiKey
 import net.ienlab.trainer.databinding.ActivityMainBinding
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -38,8 +39,7 @@ class MainActivity : AppCompatActivity() {
 //        val header = "Bearer $accessToken"
         val lat = 37.81
         val lng = 127.11
-        val apiKey = "3e1f688c8281898d3681ca3fc02d9430"
-        val apiURL = URL("https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric")
+        val apiURL = URL("https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${ApiKey.OPENWEATHER_KEY}&units=metric")
 
         GlobalScope.launch(Dispatchers.IO) {
             val con = (apiURL.openConnection() as HttpsURLConnection).apply {

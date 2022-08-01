@@ -61,9 +61,29 @@ class OnboardingFragment3 : Fragment() {
                 startCalendar.set(Calendar.MINUTE, 0)
                 startCalendar.set(Calendar.SECOND, 0)
 
-                sharedPreferences.edit().putInt(SharedKey.BIRTHDAY, dateSaveFormat.format(startCalendar.time).toInt()).apply()
+                endCalendar.time = startCalendar.time
+                endCalendar.add(Calendar.MONTH, 18)
+                endCalendar.add(Calendar.DAY_OF_MONTH, -1)
+
+                sharedPreferences.edit().putInt(SharedKey.INPUT_DAY, dateSaveFormat.format(startCalendar.time).toInt()).apply()
+                sharedPreferences.edit().putInt(SharedKey.OUTPUT_DAY, dateSaveFormat.format(endCalendar.time).toInt()).apply()
                 binding.btnAction.text = dateFormat.format(startCalendar.time)
+                binding.btnAction2.text = dateFormat.format(endCalendar.time)
             }, startCalendar.get(Calendar.YEAR), startCalendar.get(Calendar.MONTH), startCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+        binding.btnAction2.setOnClickListener {
+            DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
+                endCalendar.set(Calendar.YEAR, year)
+                endCalendar.set(Calendar.MONTH, month)
+                endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                endCalendar.set(Calendar.HOUR_OF_DAY, 0)
+                endCalendar.set(Calendar.MINUTE, 0)
+                endCalendar.set(Calendar.SECOND, 0)
+
+                sharedPreferences.edit().putInt(SharedKey.OUTPUT_DAY, dateSaveFormat.format(endCalendar.time).toInt()).apply()
+                binding.btnAction2.text = dateFormat.format(endCalendar.time)
+            }, endCalendar.get(Calendar.YEAR), endCalendar.get(Calendar.MONTH), endCalendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
 

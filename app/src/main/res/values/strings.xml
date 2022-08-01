@@ -37,6 +37,9 @@
     <string name="intro_page6_exp">Unit: Minute. Select the notifications you want to receive.</string>
     <string name="nlevel">%1$d급</string>
     <string name="special_level">특급</string>
+
     <string name="permission_granted_msg">Please grant permission.</string>
     <string name="dateFormat">yyyy.M.d</string>
+    <string name="err_name_not_filled">Please fill out your name.</string>
+    <string name="err_name_and_permission">Please grant permission and fill out your name.</string>
 </resources>

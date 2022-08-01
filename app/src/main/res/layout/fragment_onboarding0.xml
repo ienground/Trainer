@@ -37,7 +37,7 @@
             android:id="@+id/tv_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="string/intro_page0_exp"
+            android:text="@string/intro_page0_exp"
             android:textSize="@dimen/onboarding_text_size"
             android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="parent"

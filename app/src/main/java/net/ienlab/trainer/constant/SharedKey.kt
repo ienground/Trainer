@@ -10,5 +10,8 @@ class SharedKey {
         const val INPUT_DAY = "input_day"
         const val OUTPUT_DAY = "output_day"
         const val GOAL_LV = "goal_lv"
+        const val TEMP_RUN = "temp_run"
+        const val TEMP_PUSHUP = "temp_pushup"
+        const val TEMP_SITUP = "temp_situp"
     }
 }

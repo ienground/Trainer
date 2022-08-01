@@ -96,6 +96,8 @@ dependencies {
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
     implementation 'com.github.hadiidbouk:ChartProgressBar-Android:2.0.6'
     implementation 'com.github.CanHub:Android-Image-Cropper:4.3.1'
+    implementation 'com.kovachcode:timePickerWithSeconds:1.0.1'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
