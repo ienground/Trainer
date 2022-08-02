@@ -59,7 +59,7 @@ class OnboardingActivity : AppCompatActivity(),
 
     lateinit var sharedPreferences: SharedPreferences
     private var trainingDatabase: TrainingDatabase? = null
-    val cutlineMap: MutableMap<String, Triple<Int, Int, Int>> = mutableMapOf()
+    val cutlineMap: MutableMap<String, Triple<MutableList<Int>, MutableList<Int>, MutableList<Int>>> = mutableMapOf()
     val cutlineAge: MutableList<Int> = mutableListOf()
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -170,8 +170,11 @@ class OnboardingActivity : AppCompatActivity(),
                     val ageLower = obj.getString("age_lwlmtprcdc").let { if (it != "") it.toInt() else -1 }
                     val grade = obj.getString("grd")
                     val type = obj.getString("kind")
+                    var typeCode = -1
                     var standardLower = -1
                     var standardUpper = -1
+
+                    if (ageLower == -1 || ageUpper == -1) continue
 
                     Log.d(TAG, type.toString())
                     when (type) {
@@ -189,18 +192,44 @@ class OnboardingActivity : AppCompatActivity(),
                                     time.get(Calendar.MINUTE) * 60 + time.get(Calendar.SECOND)
                                 } else -1
                             }
+                            typeCode = TrainingEntity.TYPE_RUN
                         }
 
                         "팔굽혀펴기(2분)" -> {
                             standardUpper = obj.getString("std_uprlmtprcdc").let { if (it != "") it.toInt() else -1 }
                             standardLower = obj.getString("std_lwlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                            typeCode = TrainingEntity.TYPE_PUSHUP
                         }
 
                         "윗몸일으키기(2분)" -> {
                             standardUpper = obj.getString("std_uprlmtprcdc").let { if (it != "") it.toInt() else -1 }
                             standardLower = obj.getString("std_lwlmtprcdc").let { if (it != "") it.toInt() else -1 }
+                            typeCode = TrainingEntity.TYPE_SITUP
                         }
                     }
+                    if (!cutlineAge.contains(ageLower)) {
+                        cutlineAge.add(ageLower)
+                    }
+
+                    val key = "${ageLower}_${ageUpper}"
+                    if (!cutlineMap.containsKey(key)) {
+                        cutlineMap[key] = Triple(mutableListOf(), mutableListOf(), mutableListOf())
+                    }
+
+                    var value = cutlineMap[key]
+                    when (typeCode) {
+                        TrainingEntity.TYPE_RUN -> value?.first?.add(standardLower)
+                        TrainingEntity.TYPE_SITUP -> value?.second?.add(standardLower)
+                        TrainingEntity.TYPE_PUSHUP -> value?.third?.add(standardLower)
+                    }
+                }
+
+                cutlineAge.sort()
+
+                Log.d(TAG, cutlineAge.toString())
+
+                cutlineMap.forEach { (s, triple) ->
+                    Log.d(TAG, "${s}, ${triple}")
                 }
 
                 // 차례대로 확인하며 Map(검색용)과 List(나이확인용) 완성
