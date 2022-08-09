@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="navigationBarColor">@android:color/transparent</color>
-    <color name="navigationBarColorPurple">@android:color/transparent</color>
-    <color name="navigationBarColorBlue">@android:color/transparent</color>
-    <color name="navigationBarColorGreen">@android:color/transparent</color>
-    <color name="navigationBarColorBurgundy">@android:color/transparent</color>
-
-    <color name="background">#121212</color>
-    <color name="backgroundPurple">#121212</color>
-    <color name="backgroundBlue">#121212</color>
-    <color name="backgroundGreen">#121212</color>
-    <color name="backgroundBurgundy">#121212</color>
-
     <color name="colorAccent">#BF3061</color>
-    <color name="colorAccentPurple">#A002C7</color>
-    <color name="colorAccentBlue">#0376BF</color>
-    <color name="colorAccentGreen">#2AB3A7</color>
-    <color name="colorAccentBurgundy">#A1012A</color>
-
     <color name="colorAccentDark">#B15E77</color>
-    <color name="colorAccentDarkPurple">#8E28A5</color>
-    <color name="colorAccentDarkBlue">#2C7AA6</color>
-    <color name="colorAccentDarkGreen">#369181</color>
-    <color name="colorAccentDarkBurgundy">#83233A</color>
 
     <color name="white">#282828</color>
     <color name="black">#EAEAEA</color>

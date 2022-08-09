@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Trainer"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PushupAddActivity"
+            android:exported="false" />
+        <activity
             android:name="com.canhub.cropper.CropImageActivity"
             android:exported="true"
             android:theme="@style/Theme.Material3.Dark" />
@@ -26,10 +29,13 @@
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.OnboardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.RunAddActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.OnboardingActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

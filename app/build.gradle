@@ -97,6 +97,7 @@ dependencies {
     implementation 'com.github.hadiidbouk:ChartProgressBar-Android:2.0.6'
     implementation 'com.github.CanHub:Android-Image-Cropper:4.3.1'
     implementation 'com.kovachcode:timePickerWithSeconds:1.0.1'
+    implementation 'ch.halcyon:squareprogressbar:1.6.4'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'

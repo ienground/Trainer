@@ -18,10 +18,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.common.api.Api
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import net.ienlab.trainer.R
 import net.ienlab.trainer.adapter.OnboardingPageAdapter
 import net.ienlab.trainer.adapter.OnboardingPageAdapter.Companion.PAGE_NUMBER
@@ -123,6 +120,7 @@ class OnboardingActivity : AppCompatActivity(),
                         if (it != -1) trainingDatabase?.getDao()?.add(TrainingEntity(System.currentTimeMillis(), TrainingEntity.TYPE_SITUP, it))
                     }
                 }
+                sharedPreferences.edit().putBoolean(SharedKey.IS_FIRST_VISIT, false).apply()
                 finish()
                 startActivity(Intent(this, MainActivity::class.java))
             } else if (sharedPreferences.getString(SharedKey.NICKNAME, "") == "") {
@@ -133,15 +131,22 @@ class OnboardingActivity : AppCompatActivity(),
                 Snackbar.make(window.decorView.rootView, getString(R.string.err_name_and_permission), Snackbar.LENGTH_SHORT).show()
             }
 
-            getCutline()
+            GlobalScope.launch(Dispatchers.IO) {
+                val dateSaveFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+                val calendar = Calendar.getInstance()
+                calendar.add(Calendar.YEAR, -19)
+                calendar.set(Calendar.MONTH, 0)
+                calendar.set(Calendar.DAY_OF_MONTH, 1)
+                val userBday = Calendar.getInstance().apply {
+                    time = dateSaveFormat.parse(sharedPreferences.getInt(SharedKey.BIRTHDAY, dateSaveFormat.format(calendar.time).toInt()).toString())
+                }
+                getCutline(Calendar.getInstance().get(Calendar.YEAR) - userBday.get(Calendar.YEAR) + 1)
+            }
         }
-
-        getCutline()
-
     }
     
     @OptIn(DelicateCoroutinesApi::class) 
-    private fun getCutline() {
+    private fun getCutline(age: Int) {
         val url = URL("https://openapi.mnd.go.kr/${ApiKey.MND_KEY}/json/DS_MND_MILPRSN_PHSTR_OFAPRV/1/233/")
     
         GlobalScope.launch(Dispatchers.IO) {
@@ -179,19 +184,17 @@ class OnboardingActivity : AppCompatActivity(),
                     Log.d(TAG, type.toString())
                     when (type) {
                         "3Km달리기" -> {
-                            val timeFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
                             standardUpper = obj.getString("std_uprlmtprcdc").let {
                                 if (it != "") {
-                                    val time = Calendar.getInstance().apply { time = timeFormat.parse(it) }
-                                    time.get(Calendar.MINUTE) * 60 + time.get(Calendar.SECOND)
+                                    it.split(":").first().toInt() * 60 + it.split(":").last().toInt()
                                 } else -1
                             }
                             standardLower = obj.getString("std_lwlmtprcdc").let {
                                 if (it != "") {
-                                    val time = Calendar.getInstance().apply { time = timeFormat.parse(it) }
-                                    time.get(Calendar.MINUTE) * 60 + time.get(Calendar.SECOND)
+                                    it.split(":").first().toInt() * 60 + it.split(":").last().toInt()
                                 } else -1
                             }
+                            if (standardLower > standardUpper) standardLower = standardUpper
                             typeCode = TrainingEntity.TYPE_RUN
                         }
 
@@ -216,7 +219,7 @@ class OnboardingActivity : AppCompatActivity(),
                         cutlineMap[key] = Triple(mutableListOf(), mutableListOf(), mutableListOf())
                     }
 
-                    var value = cutlineMap[key]
+                    val value = cutlineMap[key]
                     when (typeCode) {
                         TrainingEntity.TYPE_RUN -> value?.first?.add(standardLower)
                         TrainingEntity.TYPE_SITUP -> value?.second?.add(standardLower)
@@ -229,7 +232,7 @@ class OnboardingActivity : AppCompatActivity(),
                 Log.d(TAG, cutlineAge.toString())
 
                 cutlineMap.forEach { (s, triple) ->
-                    Log.d(TAG, "${s}, ${triple}")
+                    Log.d(TAG, "${s}, $triple")
                 }
 
                 // 차례대로 확인하며 Map(검색용)과 List(나이확인용) 완성
@@ -237,7 +240,38 @@ class OnboardingActivity : AppCompatActivity(),
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+
+            withContext(Dispatchers.IO) {
+                val standard = getStandard(age)
+                Log.d(TAG, standard.toString())
+                standard?.first?.get(1)?.let { sharedPreferences.edit().putInt(SharedKey.RUN_LVS, it).apply() }
+                standard?.first?.get(2)?.let { sharedPreferences.edit().putInt(SharedKey.RUN_LV1, it).apply() }
+                standard?.first?.get(3)?.let { sharedPreferences.edit().putInt(SharedKey.RUN_LV2, it).apply() }
+                standard?.first?.get(4)?.let { sharedPreferences.edit().putInt(SharedKey.RUN_LV3, it).apply() }
+
+                standard?.second?.get(0)?.let { sharedPreferences.edit().putInt(SharedKey.SITUP_LVS, it).apply() }
+                standard?.second?.get(1)?.let { sharedPreferences.edit().putInt(SharedKey.SITUP_LV1, it).apply() }
+                standard?.second?.get(2)?.let { sharedPreferences.edit().putInt(SharedKey.SITUP_LV2, it).apply() }
+                standard?.second?.get(3)?.let { sharedPreferences.edit().putInt(SharedKey.SITUP_LV3, it).apply() }
+
+                standard?.third?.get(0)?.let { sharedPreferences.edit().putInt(SharedKey.PUSHUP_LVS, it).apply() }
+                standard?.third?.get(1)?.let { sharedPreferences.edit().putInt(SharedKey.PUSHUP_LV1, it).apply() }
+                standard?.third?.get(2)?.let { sharedPreferences.edit().putInt(SharedKey.PUSHUP_LV2, it).apply() }
+                standard?.third?.get(3)?.let { sharedPreferences.edit().putInt(SharedKey.PUSHUP_LV3, it).apply() }
+            }
         }
+    }
+
+    private fun getStandard(age: Int): Triple<MutableList<Int>, MutableList<Int>, MutableList<Int>>? {
+        var index = 0
+        while (index < cutlineAge.size - 1 && cutlineAge[index] <= age) {
+            index++
+        }
+
+        val ageLower = cutlineAge[if (index < 1) 0 else index - 1]
+        val ageUpper = cutlineAge[if (index < 1) 1 else index] - 1
+
+        return cutlineMap["${ageLower}_${ageUpper}"]
     }
 
     override fun onFragmentInteraction(uri: Uri) {}

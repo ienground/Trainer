@@ -120,7 +120,7 @@ class OnboardingFragment2 : Fragment() {
                 outputStream.close()
                 inputStream.close()
                 binding.ivProfile.setImageURI(profileImageFile.toUri())
-                sharedPreferences.edit().putString(SharedKey.PROFILE_URI, profileImageFile.toUri().toString())
+                sharedPreferences.edit().putString(SharedKey.PROFILE_URI, profileImageFile.toUri().toString()).apply()
             }
         } else {
             // an error occurred

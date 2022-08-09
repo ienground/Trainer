@@ -20,7 +20,7 @@
             android:layout_marginHorizontal="@dimen/usual_margin"
             android:layout_marginTop="@dimen/usual_margin"
             android:padding="@dimen/usual_margin"
-            android:background="@color/backgroundBlue"
+            android:background="@color/black_opacity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_add"
             app:layout_constraintTop_toTopOf="parent">
@@ -106,6 +106,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="IENGROUND"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:layout_marginHorizontal="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/iv_grade"
@@ -118,6 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enlist"
+            android:textColor="@color/black"
             android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="@id/iv_grade"
             app:layout_constraintTop_toBottomOf="@id/iv_grade"
@@ -128,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/discharge"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@id/iv_grade"
             app:layout_constraintTop_toBottomOf="@id/tv_label_start"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile" />
@@ -147,6 +150,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="2022.02.07"
+            android:textColor="@color/black"
             android:layout_marginHorizontal="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/line"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,6 +162,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="2023.08.06"
+            android:textColor="@color/black"
             android:layout_marginHorizontal="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/line"
             app:layout_constraintEnd_toEndOf="parent"
@@ -169,8 +174,9 @@
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_margin="@dimen/usual_margin"
+            android:elevation="8dp"
             app:rcAnimationEnable="true"
-            app:rcBackgroundColor="@color/blur_background"
+            app:rcBackgroundColor="@color/black_opacity"
             app:rcProgressColor="?attr/colorAccent"
             app:rcProgress="10"
             app:rcMax="70"
@@ -183,54 +189,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="D-50"
+            android:elevation="16dp"
             android:layout_marginStart="@dimen/usual_margin"
+            android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="@id/mill_progress"
-            app:layout_constraintTop_toTopOf="@id/mill_progress"
-            app:layout_constraintBottom_toBottomOf="@id/mill_progress" />
+            app:layout_constraintTop_toBottomOf="@id/mill_progress" />
 
         <TextView
             android:id="@+id/mill_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="40%"
+            android:elevation="16dp"
             android:layout_marginEnd="@dimen/usual_margin"
+            android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintEnd_toEndOf="@id/mill_progress"
-            app:layout_constraintTop_toTopOf="@id/mill_progress"
-            app:layout_constraintBottom_toBottomOf="@id/mill_progress" />
-
-        <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
-            android:id="@+id/goal_progress"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_margin="@dimen/usual_margin"
-            app:rcAnimationEnable="true"
-            app:rcBackgroundColor="@color/blur_background"
-            app:rcProgressColor="?attr/colorAccent"
-            app:rcProgress="10"
-            app:rcMax="70"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mill_progress" />
-
-        <TextView
-            android:id="@+id/goal_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D-50"
-            android:layout_marginStart="@dimen/usual_margin"
-            app:layout_constraintStart_toStartOf="@id/goal_progress"
-            app:layout_constraintTop_toTopOf="@id/goal_progress"
-            app:layout_constraintBottom_toBottomOf="@id/goal_progress" />
-
-        <TextView
-            android:id="@+id/goal_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="40%"
-            android:layout_marginEnd="@dimen/usual_margin"
-            app:layout_constraintEnd_toEndOf="@id/goal_progress"
-            app:layout_constraintTop_toTopOf="@id/goal_progress"
-            app:layout_constraintBottom_toBottomOf="@id/goal_progress" />
 
         <ScrollView
             android:layout_width="0dp"
@@ -241,7 +215,7 @@
             android:fadingEdgeLength="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/goal_progress"
+            app:layout_constraintTop_toBottomOf="@id/mill_day"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
