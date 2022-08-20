@@ -15,6 +15,7 @@ class SharedKey {
         const val TEMP_PUSHUP = "temp_pushup"
         const val TEMP_SITUP = "temp_situp"
         const val LAST_YEAR = "last_year"
+        const val GRADE = "grade"
 
         const val RUN_LVS = "run_lv_special"
         const val RUN_LV1 = "run_lv_1"
@@ -30,5 +31,8 @@ class SharedKey {
         const val SITUP_LV1 = "situp_lv_1"
         const val SITUP_LV2 = "situp_lv_2"
         const val SITUP_LV3 = "situp_lv_3"
+
+        const val SUCCESS_DATE = "success_date"
+        const val SUCCESS_LV = "success_lv"
     }
 }

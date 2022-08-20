@@ -17,6 +17,7 @@ import net.ienlab.trainer.databinding.FragmentOnboarding3Binding
 import net.ienlab.trainer.R
 import net.ienlab.trainer.constant.SharedKey
 import java.text.SimpleDateFormat
+import java.time.Year
 import java.util.*
 
 class OnboardingFragment3 : Fragment() {
@@ -69,6 +70,17 @@ class OnboardingFragment3 : Fragment() {
                 sharedPreferences.edit().putInt(SharedKey.OUTPUT_DAY, dateSaveFormat.format(endCalendar.time).toInt()).apply()
                 binding.btnAction.text = dateFormat.format(startCalendar.time)
                 binding.btnAction2.text = dateFormat.format(endCalendar.time)
+
+                val monthDiff = Calendar.getInstance().let { it.get(Calendar.YEAR) * 12 + it.get(Calendar.MONTH) } - startCalendar.let { it.get(Calendar.YEAR) * 12 + it.get(Calendar.MONTH) }
+                if (monthDiff <= 2) {
+                    sharedPreferences.edit().putInt(SharedKey.GRADE, 10 + monthDiff).apply()
+                } else if (monthDiff <= 8) {
+                    sharedPreferences.edit().putInt(SharedKey.GRADE, 20 + monthDiff - 2).apply()
+                } else if (monthDiff <= 14) {
+                    sharedPreferences.edit().putInt(SharedKey.GRADE, 30 + monthDiff - 8).apply()
+                } else {
+                    sharedPreferences.edit().putInt(SharedKey.GRADE, 40 + monthDiff - 14).apply()
+                }
             }, startCalendar.get(Calendar.YEAR), startCalendar.get(Calendar.MONTH), startCalendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 

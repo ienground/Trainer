@@ -13,57 +13,74 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/group_weather"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/usual_margin"
-            android:layout_marginTop="@dimen/usual_margin"
-            android:padding="@dimen/usual_margin"
-            android:background="@color/black_opacity"
+            app:cardBackgroundColor="@color/black_opacity"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="@dimen/layout_radius"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_add"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@id/btn_add"
+            app:layout_constraintBottom_toBottomOf="@id/btn_add">
 
-            <TextView
-                android:id="@+id/tv_city"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Mapo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/tv_dust" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/usual_margin">
 
-            <TextView
-                android:id="@+id/tv_dust"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="dust"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_city"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                <TextView
+                    android:id="@+id/tv_city"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_dust" />
 
-            <TextView
-                android:id="@+id/tv_temp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="26C"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                <TextView
+                    android:id="@+id/tv_dust"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_city"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_weather"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_cloud"
-                android:layout_marginEnd="@dimen/usual_margin"
-                app:layout_constraintEnd_toStartOf="@id/tv_temp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                <TextView
+                    android:id="@+id/tv_temp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/iv_weather"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_refresh"
+                    android:layout_marginEnd="@dimen/usual_margin"
+                    app:tint="@color/black"
+                    app:layout_constraintEnd_toStartOf="@id/tv_temp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_add"
@@ -73,13 +90,13 @@
             android:stateListAnimator="@null"
             android:src="@drawable/ic_add"
             android:layout_marginEnd="@dimen/usual_margin"
-            app:tint="@color/white"
+            android:layout_marginTop="@dimen/usual_margin"
+            app:tint="@android:color/white"
             app:backgroundTint="@color/colorAccentDark"
             app:fabCustomSize="72dp"
             app:layout_constraintStart_toEndOf="@id/group_weather"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/group_weather"
-            app:layout_constraintBottom_toBottomOf="@id/group_weather"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="1:1"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -95,7 +112,7 @@
             android:id="@+id/iv_grade"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_menu"
+            android:src="@drawable/ic_lv_1"
             android:layout_marginStart="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/iv_profile"
             app:layout_constraintTop_toTopOf="@id/iv_profile"
@@ -108,18 +125,31 @@
             android:text="IENGROUND"
             android:textColor="@color/black"
             android:textSize="24sp"
+            android:fontFamily="@font/pretendard_black"
             android:layout_marginHorizontal="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/iv_grade"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_settings"
             app:layout_constraintTop_toTopOf="@id/iv_grade"
             app:layout_constraintBottom_toBottomOf="@id/iv_grade" />
 
+        <ImageButton
+            android:id="@+id/btn_settings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_settings"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:layout_margin="@dimen/usual_margin"
+            app:tint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_nickname"
+            app:layout_constraintBottom_toBottomOf="@id/tv_nickname" />
         <TextView
             android:id="@+id/tv_label_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enlist"
             android:textColor="@color/black"
+            android:fontFamily="@font/pretendard"
             android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="@id/iv_grade"
             app:layout_constraintTop_toBottomOf="@id/iv_grade"
@@ -131,6 +161,7 @@
             android:layout_height="wrap_content"
             android:text="@string/discharge"
             android:textColor="@color/black"
+            android:fontFamily="@font/pretendard"
             app:layout_constraintStart_toStartOf="@id/iv_grade"
             app:layout_constraintTop_toBottomOf="@id/tv_label_start"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile" />
@@ -151,6 +182,7 @@
             android:layout_height="wrap_content"
             android:text="2022.02.07"
             android:textColor="@color/black"
+            android:fontFamily="@font/pretendard"
             android:layout_marginHorizontal="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/line"
             app:layout_constraintEnd_toEndOf="parent"
@@ -163,6 +195,7 @@
             android:layout_height="wrap_content"
             android:text="2023.08.06"
             android:textColor="@color/black"
+            android:fontFamily="@font/pretendard"
             android:layout_marginHorizontal="@dimen/usual_margin"
             app:layout_constraintStart_toEndOf="@id/line"
             app:layout_constraintEnd_toEndOf="parent"
@@ -189,8 +222,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="D-50"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pretendard"
             android:elevation="16dp"
-            android:layout_marginStart="@dimen/usual_margin"
             android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="@id/mill_progress"
             app:layout_constraintTop_toBottomOf="@id/mill_progress" />
@@ -200,8 +234,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="40%"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pretendard"
             android:elevation="16dp"
-            android:layout_marginEnd="@dimen/usual_margin"
             android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintEnd_toEndOf="@id/mill_progress"
             app:layout_constraintTop_toBottomOf="@id/mill_progress" />
@@ -247,6 +282,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/goals"
                             android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -256,7 +293,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="D-10"
-                            android:textSize="48sp"
+                            android:textSize="36sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_label_goal"
@@ -290,6 +329,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/current"
                             android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -299,7 +340,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="D-10"
-                            android:textSize="48sp"
+                            android:textSize="36sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_label_current"
@@ -314,12 +357,24 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/usual_margin"
-                    app:cardBackgroundColor="?attr/colorAccentAlpha"
+                    android:clickable="true"
+                    android:focusable="auto"
+                    android:foreground="?attr/selectableItemBackground"
                     app:cardCornerRadius="@dimen/layout_radius"
                     app:cardElevation="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_goal">
+
+                    <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                        android:id="@+id/progress_run"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:rcProgress="5"
+                        app:rcMax="10"
+                        app:rcRadius="@dimen/layout_radius"
+                        app:rcProgressColor="@color/colorAccentAlpha"
+                        app:rcBackgroundColor="@color/black_opacity" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -331,8 +386,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_run"
+                            app:tint="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_percent_run"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10/20"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_label_run"
@@ -340,6 +407,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/run"
                             android:textSize="24sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ic_run"
                             app:layout_constraintBottom_toBottomOf="parent" />
@@ -353,12 +422,24 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/usual_margin"
-                    app:cardBackgroundColor="?attr/colorAccentAlpha"
+                    android:clickable="true"
+                    android:focusable="auto"
+                    android:foreground="?attr/selectableItemBackground"
                     app:cardCornerRadius="@dimen/layout_radius"
                     app:cardElevation="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_running">
+
+                    <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                        android:id="@+id/progress_situp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:rcProgress="5"
+                        app:rcMax="10"
+                        app:rcRadius="@dimen/layout_radius"
+                        app:rcProgressColor="@color/colorAccentAlpha"
+                        app:rcBackgroundColor="@color/black_opacity" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -370,8 +451,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_sit_up"
+                            app:tint="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_percent_situp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10/20"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_label_situp"
@@ -379,6 +472,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/situp"
                             android:textSize="24sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ic_situp"
                             app:layout_constraintBottom_toBottomOf="parent" />
@@ -392,13 +487,25 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/usual_margin"
-                    app:cardBackgroundColor="?attr/colorAccentAlpha"
+                    android:clickable="true"
+                    android:focusable="auto"
+                    android:foreground="?attr/selectableItemBackground"
                     app:cardCornerRadius="@dimen/layout_radius"
                     app:cardElevation="0dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_situp"
                     app:layout_constraintBottom_toBottomOf="parent">
+
+                    <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                        android:id="@+id/progress_pushup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:rcProgress="5"
+                        app:rcMax="10"
+                        app:rcRadius="@dimen/layout_radius"
+                        app:rcProgressColor="@color/colorAccentAlpha"
+                        app:rcBackgroundColor="@color/black_opacity" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -410,8 +517,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_pushup"
+                            app:tint="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_percent_pushup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10/20"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_label_pushup"
@@ -419,6 +538,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/pushup"
                             android:textSize="24sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/pretendard_black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/ic_pushup"
                             app:layout_constraintBottom_toBottomOf="parent" />
@@ -451,6 +572,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/add_new_event"
                 android:textSize="36sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/pretendard_black"
                 android:layout_marginBottom="@dimen/usual_margin"
                 app:layout_constraintStart_toStartOf="@id/add_card_running"
                 app:layout_constraintBottom_toTopOf="@id/add_card_running"/>
@@ -479,6 +602,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_run"
+                        app:tint="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -488,6 +612,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/run"
                         android:textSize="24sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/add_ic_run"
                         app:layout_constraintBottom_toBottomOf="parent" />
@@ -519,6 +645,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_sit_up"
+                        app:tint="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -528,6 +655,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/situp"
                         android:textSize="24sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/add_ic_situp"
                         app:layout_constraintBottom_toBottomOf="parent" />
@@ -560,6 +689,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_pushup"
+                        app:tint="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -569,6 +699,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/pushup"
                         android:textSize="24sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pretendard_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/add_ic_pushup"
                         app:layout_constraintBottom_toBottomOf="parent" />
@@ -582,7 +714,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_close"
+                android:tint="@android:color/white"
                 android:layout_marginBottom="@dimen/usual_margin"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/pretendard"
+                app:backgroundTint="@color/colorAccent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />

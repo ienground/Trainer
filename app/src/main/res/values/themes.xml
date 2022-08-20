@@ -6,8 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorAccentDark">@color/colorAccentDark</item>
         <item name="colorAccentAlpha">@color/colorAccentAlpha</item>
-        <item name="colorAccentTag">@color/colorAccentTag</item>
-<!--        <item name="colorBackground">@color/background</item>-->
+<!--        <item name="colorBackground">2@color/background</item>-->
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@color/navigationBarColor</item>
         <item name="android:windowTranslucentStatus">true</item>

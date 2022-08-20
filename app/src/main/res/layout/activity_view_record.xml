@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="net.ienlab.trainer.activity.ViewRecordActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".activity.ViewRecordActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/check_today_record"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_check_circle"
+                    android:layout_marginStart="@dimen/usual_margin"
+                    app:tint="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/label_today_record"
+                    app:layout_constraintBottom_toBottomOf="@id/label_today_record" />
+
+                <TextView
+                    android:id="@+id/label_today_record"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/todays_record"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_black"
+                    android:layout_margin="@dimen/usual_margin"
+                    app:layout_constraintStart_toEndOf="@id/check_today_record"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:id="@+id/today_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="@dimen/usual_margin"
+                    app:rcBackgroundColor="@color/black_opacity"
+                    app:rcProgressColor="@color/colorPrimary"
+                    app:rcAnimationEnable="true"
+                    app:rcAnimationSpeedScale="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_today_record" />
+
+                <TextView
+                    android:id="@+id/tv_today_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="26"
+                    android:elevation="16dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard"
+                    android:layout_marginTop="@dimen/usual_margin"
+                    app:layout_constraintStart_toStartOf="@id/today_progress"
+                    app:layout_constraintTop_toBottomOf="@id/today_progress" />
+
+                <TextView
+                    android:id="@+id/tv_today_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:elevation="16dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard"
+                    android:layout_marginTop="@dimen/usual_margin"
+                    app:layout_constraintEnd_toEndOf="@id/today_progress"
+                    app:layout_constraintTop_toBottomOf="@id/today_progress" />
+
+                <ImageView
+                    android:id="@+id/check_avg_record"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_check_circle"
+                    android:layout_marginStart="@dimen/usual_margin"
+                    app:tint="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/label_avg_record"
+                    app:layout_constraintBottom_toBottomOf="@id/label_avg_record" />
+
+                <TextView
+                    android:id="@+id/label_avg_record"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average_record"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard_black"
+                    android:layout_margin="@dimen/usual_margin"
+                    app:layout_constraintStart_toEndOf="@id/check_avg_record"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_today_max" />
+
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:id="@+id/avg_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="@dimen/usual_margin"
+                    app:rcBackgroundColor="@color/black_opacity"
+                    app:rcProgressColor="@color/colorPrimary"
+                    app:rcAnimationEnable="true"
+                    app:rcAnimationSpeedScale="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_avg_record" />
+
+                <TextView
+                    android:id="@+id/tv_avg_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="26"
+                    android:elevation="16dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard"
+                    android:layout_marginTop="@dimen/usual_margin"
+                    app:layout_constraintStart_toStartOf="@id/avg_progress"
+                    app:layout_constraintTop_toBottomOf="@id/avg_progress" />
+
+                <TextView
+                    android:id="@+id/tv_avg_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:elevation="16dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/pretendard"
+                    android:layout_marginTop="@dimen/usual_margin"
+                    app:layout_constraintEnd_toEndOf="@id/avg_progress"
+                    app:layout_constraintTop_toBottomOf="@id/avg_progress" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/graph"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
+                    android:layout_marginHorizontal="@dimen/usual_margin"
+                    android:layout_marginTop="@dimen/usual_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_avg_max" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/usual_margin"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/graph" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard"
+            app:menu="@menu/menu_view_record"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

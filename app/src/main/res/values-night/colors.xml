@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="navigationBarColor">@android:color/transparent</color>
-    <color name="colorAccent">#BF3061</color>
-    <color name="colorAccentDark">#B15E77</color>
+<!--    <color name="colorPrimary">#79C07D</color>-->
+<!--    <color name="colorPrimaryDark">#4A9F50</color>-->
+<!--    <color name="colorAccent">#B58E81</color>-->
+<!--    <color name="colorAccentDark">#6A4539</color>-->
+<!--    <color name="colorAccentAlpha">#55B58E81</color>-->
 
     <color name="white">#282828</color>
     <color name="black">#EAEAEA</color>

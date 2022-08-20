@@ -63,7 +63,7 @@ class OnboardingFragment5 : Fragment() {
                 runTime.set(Calendar.MINUTE, minute)
                 runTime.set(Calendar.SECOND, seconds)
                 binding.btnRun.text = timeFormat.format(runTime.time)
-                sharedPreferences.edit().putInt(SharedKey.TEMP_RUN, hourOfDay * 3600 + minute * 60 + seconds).apply()
+                sharedPreferences.edit().putInt(SharedKey.TEMP_RUN, (hourOfDay * 3600 + minute * 60 + seconds) * 10).apply()
             }, runTime.get(Calendar.HOUR_OF_DAY), runTime.get(Calendar.HOUR_OF_DAY), runTime.get(Calendar.HOUR_OF_DAY), true).show()
         }
 

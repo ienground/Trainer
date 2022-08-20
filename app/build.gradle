@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 //    id 'com.google.gms.google-services'
-//    id 'com.google.android.gms.oss-licenses-plugin'
+    id 'com.google.android.gms.oss-licenses-plugin'
 }
 
 android {
@@ -14,8 +14,8 @@ android {
         applicationId "net.ienlab.trainer"
         minSdk 27
         targetSdk 32
-        versionCode 1
-        versionName "0.0.0"
+        versionCode 4
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -83,7 +83,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
 //    implementation 'com.naver.nid:naveridlogin-android-sdk:4.4.1'
-//    implementation 'com.github.PhilJay:MpAndroidChart:v3.0.2'
+    implementation 'com.github.PhilJay:MpAndroidChart:v3.0.2'
 //    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 //    implementation 'com.prof.rssparser:rssparser:2.0.4'
@@ -98,6 +98,8 @@ dependencies {
     implementation 'com.github.CanHub:Android-Image-Cropper:4.3.1'
     implementation 'com.kovachcode:timePickerWithSeconds:1.0.1'
     implementation 'ch.halcyon:squareprogressbar:1.6.4'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'

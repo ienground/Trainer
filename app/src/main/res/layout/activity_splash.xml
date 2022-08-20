@@ -15,7 +15,7 @@
             android:id="@+id/imgLogo"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/ic_person"
+            android:src="@drawable/ic_icon_color"
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,11 +33,13 @@
             app:layout_constraintTop_toBottomOf="@id/imgLogo"
             app:layout_constraintBottom_toTopOf="@id/devLogo" />
 
-        <ImageView
+        <TextView
             android:id="@+id/devLogo"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dev_milifare"
+            android:textColor="@color/black"
+            android:fontFamily="@font/pretendard_black"
             android:layout_marginBottom="30dp"
             android:contentDescription="@string/pushup"
             app:layout_constraintStart_toStartOf="parent"

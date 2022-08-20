@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <net.ienlab.trainer.preference.AppInfoPreference
+        app:key="app_title"
+        app:layout="@layout/preference_app_info"/>
+
+    <PreferenceCategory app:title="@string/goals">
+        <DropDownPreference
+            app:title="@string/intro_page4_title"
+            app:key="goal_lv"
+            app:defaultValue="3"
+            app:entries="@array/levels"
+            app:entryValues="@array/levels_int"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/info_and_ask" >
+
+        <Preference
+            app:title="@string/changelog"
+            app:key="changelog"
+            app:summary="@string/pref_changelog_exp"/>
+
+        <Preference
+            app:title="@string/ask_to_dev"
+            app:key="ask_to_dev"
+            app:summary="@string/pref_ask_exp"/>
+
+        <Preference
+            app:title="@string/open_source_license"
+            app:key="open_source"
+            app:summary="@string/pref_opens_exp"/>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

@@ -10,13 +10,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.gms.common.api.Api
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 import net.ienlab.trainer.R
@@ -70,7 +67,7 @@ class OnboardingActivity : AppCompatActivity(),
 
         // 데이터 초기화
         sharedPreferences.edit().clear().apply()
-        sharedPreferences.edit().putInt(SharedKey.GOAL_LV, 3).apply()
+        sharedPreferences.edit().putString(SharedKey.GOAL_LV, "3").apply()
         deleteDatabase("TrainingData.db")
         var prePosition = -1
 

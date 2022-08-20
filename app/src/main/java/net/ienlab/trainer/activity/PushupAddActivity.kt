@@ -4,20 +4,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.*
 import net.ienlab.trainer.R
 import net.ienlab.trainer.databinding.ActivityPushupAddBinding
-import net.ienlab.trainer.utils.MyUtils
+import net.ienlab.trainer.room.TrainingDatabase
+import net.ienlab.trainer.room.TrainingEntity
+import net.ienlab.trainer.utils.MyBottomSheetDialog
 import java.util.*
 
 class PushupAddActivity : AppCompatActivity() {
 
     private var second = 0
+    private var counter = 0
     private var timerStart = false
     private var timer = Timer()
+    private var trainingDatabase: TrainingDatabase? = null
 
     lateinit var binding: ActivityPushupAddBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    @OptIn(DelicateCoroutinesApi::class) override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pushup_add)
         binding.activity = this
@@ -26,17 +37,37 @@ class PushupAddActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = null
 
+        trainingDatabase = TrainingDatabase.getInstance(this)
+
+//        val gifImage = Glide
+        Glide.with(this)
+            .asBitmap()
+            .load(R.drawable.ic_pushup_gif).into(binding.icPushup)
+
         second = 2 * 60 * 10
-        var counter = 0
+        counter = 0
+
+        binding.progressTimer.max = 1200f
+        binding.progressTimer.progress = 1200f
 
         binding.btnTimer.setOnClickListener {
             if (timerStart) {
                 Log.d(TAG, "timer stop")
                 timerStart = false
+                binding.btnTimer.setIconResource(R.drawable.ic_play)
+                binding.btnTimer.text = getString(R.string.start)
+                Glide.with(this)
+                    .asBitmap()
+                    .load(R.drawable.ic_pushup_gif).into(binding.icPushup)
                 timer.cancel()
             } else {
                 Log.d(TAG, "timer start")
                 timerStart = true
+                binding.btnTimer.setIconResource(R.drawable.ic_pause)
+                binding.btnTimer.text = getString(R.string.pause)
+                Glide.with(this)
+                    .asGif()
+                    .load(R.drawable.ic_pushup_gif).into(binding.icPushup)
                 createTimerTask()
             }
 
@@ -48,11 +79,53 @@ class PushupAddActivity : AppCompatActivity() {
             }
         }
 
+        binding.tvFillManual.paint.isUnderlineText = true
+        binding.tvFillManual.setOnClickListener {
+            MyBottomSheetDialog(this@PushupAddActivity).apply {
+                val dialogView = layoutInflater.inflate(R.layout.dialog_edittext, LinearLayout(applicationContext), false)
+                val tvTitle: TextView = dialogView.findViewById(R.id.tv_title)
+                val tvContent: TextInputLayout = dialogView.findViewById(R.id.tv_content)
+                val btnPositive: LinearLayout = dialogView.findViewById(R.id.btn_positive)
+                val btnNegative: LinearLayout = dialogView.findViewById(R.id.btn_negative)
+                val tvPositive: TextView = dialogView.findViewById(R.id.btn_positive_text)
+                val tvNegative: TextView = dialogView.findViewById(R.id.btn_negative_text)
+
+                tvTitle.text = getString(R.string.comfirm_record)
+                tvContent.editText?.hint = getString(R.string.record)
+                tvContent.editText?.setText(counter.toString())
+
+                btnPositive.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        val entity = tvContent.editText?.text?.toString()?.let {
+                            TrainingEntity(System.currentTimeMillis(), TrainingEntity.TYPE_PUSHUP, if (it.isNotEmpty()) it.toInt() else 0)
+                        }
+                        if (entity != null) {
+                            trainingDatabase?.getDao()?.add(entity)
+                        }
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@PushupAddActivity, getString(R.string.saved), Toast.LENGTH_SHORT).show()
+                            setResult(RESULT_OK)
+                            finish()
+                        }
+                    }
+                }
+
+                btnNegative.setOnClickListener {
+                    dismiss()
+                    finish()
+                }
+
+                setContentView(dialogView)
+            }.show()
+
+        }
+
 //        binding.progressTimer.setProgressFormatter { _, _ ->  "" }
 //        binding.progressTimer.progress = 120
 //        binding.progressTimer.progress = 110
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun createTimerTask() {
         val timerTask = object: TimerTask() {
             override fun run() {
@@ -60,12 +133,58 @@ class PushupAddActivity : AppCompatActivity() {
                     if (second > 0) {
                         second--
                         runOnUiThread {
-                            binding.tvTimer.text = String.format("%02d:%02d", second / 600, second % 600)
+                            binding.tvTimer.text = String.format("%02d:%02d", second / 600, (second % 600) / 10)
+                            binding.progressTimer.progress = second.toFloat()
                         }
 
                     } else {
                         timer.cancel()
                         timerStart = false
+
+                        runOnUiThread {
+                            Glide.with(this@PushupAddActivity)
+                                .asBitmap()
+                                .load(R.drawable.ic_pushup_gif).into(binding.icPushup)
+
+                            binding.progressTimer.progress = second.toFloat()
+                            MyBottomSheetDialog(this@PushupAddActivity).apply {
+                                val dialogView = layoutInflater.inflate(R.layout.dialog_edittext, LinearLayout(applicationContext), false)
+                                val tvTitle: TextView = dialogView.findViewById(R.id.tv_title)
+                                val tvContent: TextInputLayout = dialogView.findViewById(R.id.tv_content)
+                                val btnPositive: LinearLayout = dialogView.findViewById(R.id.btn_positive)
+                                val btnNegative: LinearLayout = dialogView.findViewById(R.id.btn_negative)
+                                val tvPositive: TextView = dialogView.findViewById(R.id.btn_positive_text)
+                                val tvNegative: TextView = dialogView.findViewById(R.id.btn_negative_text)
+
+                                tvTitle.text = getString(R.string.comfirm_record)
+                                tvContent.editText?.hint = getString(R.string.record)
+                                tvContent.editText?.setText(counter.toString())
+
+                                btnPositive.setOnClickListener {
+                                    GlobalScope.launch(Dispatchers.IO) {
+                                        val entity = tvContent.editText?.text?.toString()?.let {
+                                            TrainingEntity(System.currentTimeMillis(), TrainingEntity.TYPE_PUSHUP, if (it.isNotEmpty()) it.toInt() else 0)
+                                        }
+                                        if (entity != null) {
+                                            trainingDatabase?.getDao()?.add(entity)
+                                        }
+                                        withContext(Dispatchers.Main) {
+                                            Toast.makeText(this@PushupAddActivity, getString(R.string.saved), Toast.LENGTH_SHORT).show()
+                                            setResult(RESULT_OK)
+                                            finish()
+                                        }
+                                    }
+                                }
+
+                                btnNegative.setOnClickListener {
+                                    dismiss()
+                                    finish()
+                                }
+
+                                setContentView(dialogView)
+                            }.show()
+                        }
+
                     }
                 }
             }

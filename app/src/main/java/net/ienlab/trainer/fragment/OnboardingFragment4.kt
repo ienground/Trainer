@@ -44,7 +44,7 @@ class OnboardingFragment4 : Fragment() {
         }
 
         binding.lvSlider.addOnChangeListener { slider, value, fromUser ->
-            sharedPreferences.edit().putInt(SharedKey.GOAL_LV, 3 - value.toInt()).apply()
+            sharedPreferences.edit().putString(SharedKey.GOAL_LV, "${3 - value.toInt()}").apply()
         }
     }
 

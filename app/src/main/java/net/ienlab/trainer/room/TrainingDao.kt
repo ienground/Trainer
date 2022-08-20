@@ -14,10 +14,10 @@ interface TrainingDao {
     fun update(data: TrainingEntity)
 
     @Query("SELECT * FROM TrainingData WHERE (timestamp >= :startDate AND timestamp < :endDate)")
-    fun get(startDate: Long, endDate: Long): TrainingEntity
+    fun get(startDate: Long, endDate: Long): List<TrainingEntity>
 
     @Query("SELECT * FROM TrainingData WHERE (type = :type AND timestamp >= :startDate AND timestamp < :endDate)")
-    fun get(type: Int, startDate: Long, endDate: Long): TrainingEntity
+    fun get(type: Int, startDate: Long, endDate: Long): List<TrainingEntity>
 
     @Query("SELECT * FROM TrainingData WHERE type = :type")
     fun get(type: Int): List<TrainingEntity>
