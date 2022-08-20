@@ -74,7 +74,7 @@ class AlarmReceiver: BroadcastReceiver() {
                 setContentTitle(context.getString(R.string.reminder_title))
                 setContentText(context.getString(R.string.reminder_msg, String.format("%02d:%02d", runMin / 600, (runMin % 600) / 10),
                     numberFormat.format(pushupMax), numberFormat.format(situpMax)))
-                setSmallIcon(R.drawable.ic_cake)
+                setSmallIcon(R.drawable.ic_icon)
                 setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SplashActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE))
                 color = ContextCompat.getColor(context, R.color.colorAccent)
             }.build())

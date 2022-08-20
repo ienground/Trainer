@@ -61,7 +61,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="net.ienlab.blogplanner.fileprovider"
+            android:authorities="net.ienlab.trainer.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
