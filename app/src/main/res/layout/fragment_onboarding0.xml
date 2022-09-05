@@ -13,15 +13,6 @@
         android:layout_gravity="center"
         android:padding="@dimen/usual_margin">
 
-        <View
-            android:id="@+id/line"
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:background="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ic_icon"
-            app:layout_constraintBottom_toBottomOf="@id/ic_icon" />
-
         <ImageView
             android:id="@+id/ic_icon"
             android:layout_width="64dp"
@@ -29,7 +20,7 @@
             android:src="@drawable/ic_icon_color"
             android:contentDescription="@string/app_name"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/line"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tv_content"/>
 
@@ -39,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="@string/intro_page0_exp"
             android:textSize="@dimen/onboarding_text_size"
-            android:fontFamily="@font/pretendard"
+            android:fontFamily="@font/pretendard_black"
             android:layout_marginTop="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="net.ienlab.trainer">
-
-<!--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,7 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trainer"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.DataInputActivity"
+            android:exported="false" />
+
         <receiver android:name=".receiver.AlarmReceiver" />
+
         <service
             android:name=".service.RunTimerService"
             android:enabled="true"
@@ -45,7 +49,8 @@
             android:exported="false" />
         <activity
             android:name=".activity.OnboardingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.RunAddActivity"
             android:exported="false" />

@@ -69,11 +69,31 @@ class AlarmReceiver: BroadcastReceiver() {
                 }
             }
 
+            val contentText = if (runMin != Int.MAX_VALUE && pushupMax != Int.MIN_VALUE && situpMax != Int.MIN_VALUE) {
+                context.getString(R.string.reminder_msg, String.format("%02d:%02d", runMin / 600, (runMin % 600) / 10),
+                    numberFormat.format(pushupMax), numberFormat.format(situpMax))
+            } else if (runMin != Int.MAX_VALUE && pushupMax != Int.MIN_VALUE) {
+                context.getString(R.string.reminder_msg_run_push, String.format("%02d:%02d", runMin / 600, (runMin % 600) / 10),
+                    numberFormat.format(pushupMax))
+            } else if (runMin != Int.MAX_VALUE && situpMax != Int.MIN_VALUE) {
+                context.getString(R.string.reminder_msg_run_sit, String.format("%02d:%02d", runMin / 600, (runMin % 600) / 10),
+                    numberFormat.format(situpMax))
+            } else if (pushupMax != Int.MIN_VALUE && situpMax != Int.MIN_VALUE) {
+                context.getString(R.string.reminder_msg_push_sit, numberFormat.format(pushupMax), numberFormat.format(situpMax))
+            } else if (runMin != Int.MAX_VALUE) {
+                context.getString(R.string.reminder_msg_run, String.format("%02d:%02d", runMin / 600, (runMin % 600) / 10))
+            } else if (pushupMax != Int.MIN_VALUE) {
+                context.getString(R.string.reminder_msg_push, numberFormat.format(pushupMax))
+            } else if (situpMax != Int.MIN_VALUE) {
+                context.getString(R.string.reminder_msg_sit, numberFormat.format(situpMax))
+            } else {
+                context.getString(R.string.reminder_msg_none)
+            }
+
             nm.createNotificationChannel(NotificationChannel(NotificationChannelId.REMINDER, context.getString(R.string.reminder), NotificationManager.IMPORTANCE_DEFAULT))
             nm.notify(NotificationId.REMINDER, NotificationCompat.Builder(context, NotificationChannelId.REMINDER).apply {
                 setContentTitle(context.getString(R.string.reminder_title))
-                setContentText(context.getString(R.string.reminder_msg, String.format("%02d:%02d", runMin / 600, (runMin % 600) / 10),
-                    numberFormat.format(pushupMax), numberFormat.format(situpMax)))
+                setContentText(contentText)
                 setSmallIcon(R.drawable.ic_icon)
                 setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SplashActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE))
                 color = ContextCompat.getColor(context, R.color.colorAccent)

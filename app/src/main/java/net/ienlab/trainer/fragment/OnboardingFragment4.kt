@@ -31,16 +31,10 @@ class OnboardingFragment4 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val typefaceRegular = ResourcesCompat.getFont(requireContext(), R.font.pretendard_regular) ?: Typeface.DEFAULT
-        val typefaceBold = ResourcesCompat.getFont(requireContext(), R.font.pretendard_black) ?: Typeface.DEFAULT
-
         sharedPreferences = requireContext().getSharedPreferences("${requireContext().packageName}_preferences", Context.MODE_PRIVATE)
-        binding.tvPage.typeface = typefaceBold
-        binding.tvTitle.typeface = typefaceBold
-        binding.tvContent.typeface = typefaceRegular
-
+        sharedPreferences.edit().putString(SharedKey.GOAL_LV, "3").apply()
         binding.lvSlider.setLabelFormatter {
-            if (it == 3f) getString(R.string.special_level) else getString(R.string.nlevel, 3 - it.toInt())
+            if (it == 0f) getString(R.string.special_level) else getString(R.string.nlevel, it.toInt())
         }
 
         binding.lvSlider.addOnChangeListener { slider, value, fromUser ->

@@ -31,13 +31,6 @@ class OnboardingFragment1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val typefaceRegular = ResourcesCompat.getFont(requireContext(), R.font.pretendard_regular) ?: Typeface.DEFAULT
-        val typefaceBold = ResourcesCompat.getFont(requireContext(), R.font.pretendard_black) ?: Typeface.DEFAULT
-
-        binding.tvPage.typeface = typefaceBold
-        binding.tvTitle.typeface = typefaceBold
-        binding.tvContent.typeface = typefaceRegular
-
         val activityResultLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted -> // Handle Permission granted/rejected
             if (isGranted) { // Permission is granted
                 binding.btnAction.text = getString(R.string.intro_page1_btn_confirmed)

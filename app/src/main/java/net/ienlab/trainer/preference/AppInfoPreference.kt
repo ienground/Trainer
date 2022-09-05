@@ -19,9 +19,5 @@ class AppInfoPreference(context: Context, attrs: AttributeSet): Preference(conte
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
-
-        val sharedPreferences = context.getSharedPreferences("${context.packageName}_preferences", Context.MODE_PRIVATE)
-        (holder.findViewById(R.id.typo) as TextView).typeface = ResourcesCompat.getFont(context, R.font.pretendard_black) ?: Typeface.DEFAULT
-        (holder.findViewById(R.id.version) as TextView).typeface = ResourcesCompat.getFont(context, R.font.pretendard_regular) ?: Typeface.DEFAULT
     }
 }

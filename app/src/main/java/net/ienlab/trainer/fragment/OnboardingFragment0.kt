@@ -26,12 +26,6 @@ class OnboardingFragment0 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val typefaceRegular = ResourcesCompat.getFont(requireContext(), R.font.pretendard_regular) ?: Typeface.DEFAULT
-        val typefaceBold = ResourcesCompat.getFont(requireContext(), R.font.pretendard_black) ?: Typeface.DEFAULT
-
-        binding.tvAppName.typeface = typefaceBold
-        binding.tvContent.typeface = typefaceBold
     }
 
     override fun onAttach(context: Context) {

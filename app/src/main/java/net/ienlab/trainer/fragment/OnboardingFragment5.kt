@@ -41,13 +41,7 @@ class OnboardingFragment5 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val typefaceRegular = ResourcesCompat.getFont(requireContext(), R.font.pretendard_regular) ?: Typeface.DEFAULT
-        val typefaceBold = ResourcesCompat.getFont(requireContext(), R.font.pretendard_black) ?: Typeface.DEFAULT
-
         sharedPreferences = requireContext().getSharedPreferences("${requireContext().packageName}_preferences", Context.MODE_PRIVATE)
-        binding.tvPage.typeface = typefaceBold
-        binding.tvTitle.typeface = typefaceBold
-        binding.tvContent.typeface = typefaceRegular
 
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         val runTime = Calendar.getInstance()

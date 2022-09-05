@@ -7,6 +7,7 @@
     <color name="colorPrimaryDark">#007c91</color>
     <color name="colorAccentAlpha">#5500897b</color>
     <color name="navigationBarColor">@color/colorAccentAlpha</color>
+    <color name="background">#E5FFFC</color>
 
     <color name="notiColor">@color/colorPrimary</color>
 

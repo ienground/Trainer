@@ -3,6 +3,7 @@ package net.ienlab.trainer.activity
 import android.app.AlarmManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Typeface
 import android.icu.number.NumberFormatter
 import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -50,6 +52,9 @@ class ViewRecordActivity : AppCompatActivity() {
 
         trainingDatabase = TrainingDatabase.getInstance(this)
         sharedPreferences = getSharedPreferences("${packageName}_preferences", Context.MODE_PRIVATE)
+        binding.graph.setNoDataTextColor(ContextCompat.getColor(this, R.color.black))
+        binding.graph.setNoDataText(getString(R.string.no_datas))
+        binding.graph.setNoDataTextTypeface(ResourcesCompat.getFont(this, R.font.pretendard_regular) ?: Typeface.DEFAULT)
         binding.bottomNav.setOnItemSelectedListener { menu ->
             val type = when (menu.itemId) {
                 R.id.navigation_run -> TrainingEntity.TYPE_RUN
@@ -130,8 +135,6 @@ class ViewRecordActivity : AppCompatActivity() {
                     binding.graph.xAxis.axisMinimum = dayMin.toFloat() - AlarmManager.INTERVAL_DAY
                     binding.graph.xAxis.axisMaximum = dayMax.toFloat() + AlarmManager.INTERVAL_DAY
                     binding.graph.description.isEnabled = false
-                    Log.d(TAG, Date(binding.graph.xAxis.axisMinimum.toLong()).toString())
-                    Log.d(TAG, Date(binding.graph.xAxis.axisMaximum.toLong()).toString())
 
                     binding.graph.xAxis.textColor = ContextCompat.getColor(applicationContext, R.color.black)
                     binding.graph.xAxis.setDrawGridLines(false)
@@ -140,7 +143,7 @@ class ViewRecordActivity : AppCompatActivity() {
                     binding.graph.axisLeft.setDrawGridLines(false)
                     binding.graph.axisRight.setDrawGridLines(false)
 
-                    binding.graph.data = lineData
+                    if (entries.isNotEmpty()) binding.graph.data = lineData
                     binding.graph.legend.isEnabled = false
                     binding.graph.invalidate()
 
@@ -169,9 +172,6 @@ class ViewRecordActivity : AppCompatActivity() {
                         binding.tvAvgMax.text = String.format("%02d:%02d", goal / 600, (goal  % 600) / 10)
                     }
 
-                    Log.d(TAG, "today ${binding.todayProgress.progress} / ${binding.todayProgress.max}")
-                    Log.d(TAG, "avg ${binding.avgProgress.progress} / ${binding.avgProgress.max}")
-
                     if (entitiesToday?.isEmpty() == true) binding.tvTodayProgress.text = "-"
                     if (entities10?.isEmpty() == true) binding.tvAvgProgress.text = "-"
 
@@ -182,10 +182,6 @@ class ViewRecordActivity : AppCompatActivity() {
             }
 
             true
-        }
-
-        GlobalScope.launch(Dispatchers.IO) {
-            Log.d(TAG, trainingDatabase?.getDao()?.getAll().toString())
         }
 
         binding.bottomNav.selectedItemId = when (intent?.getIntExtra(IntentKey.VIEW_RECORD_TYPE, TrainingEntity.TYPE_RUN)) {

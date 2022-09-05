@@ -35,13 +35,7 @@ class OnboardingFragment3 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val typefaceRegular = ResourcesCompat.getFont(requireContext(), R.font.pretendard_regular) ?: Typeface.DEFAULT
-        val typefaceBold = ResourcesCompat.getFont(requireContext(), R.font.pretendard_black) ?: Typeface.DEFAULT
-
         sharedPreferences = requireContext().getSharedPreferences("${requireContext().packageName}_preferences", Context.MODE_PRIVATE)
-        binding.tvPage.typeface = typefaceBold
-        binding.tvTitle.typeface = typefaceBold
-        binding.tvContent.typeface = typefaceRegular
 
         val dateFormat = SimpleDateFormat(getString(R.string.dateFormat), Locale.getDefault())
         val dateSaveFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
@@ -52,6 +46,9 @@ class OnboardingFragment3 : Fragment() {
 
         binding.btnAction.text = dateFormat.format(startCalendar.time)
         binding.btnAction2.text = dateFormat.format(endCalendar.time)
+
+        sharedPreferences.edit().putInt(SharedKey.INPUT_DAY, dateSaveFormat.format(startCalendar.time).toInt()).apply()
+        sharedPreferences.edit().putInt(SharedKey.OUTPUT_DAY, dateSaveFormat.format(endCalendar.time).toInt()).apply()
 
         binding.btnAction.setOnClickListener {
             DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->

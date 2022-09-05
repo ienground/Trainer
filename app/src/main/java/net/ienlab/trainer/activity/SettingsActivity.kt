@@ -58,7 +58,6 @@ class SettingsActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.appTitle.typeface = typefaceBold
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -109,9 +108,6 @@ class SettingsActivity : AppCompatActivity() {
                     val tvTitle: TextView = view.findViewById(R.id.tv_title)
                     val tvContent: TextView = view.findViewById(R.id.tv_content)
 
-                    tvTitle.typeface = typefaceBold
-                    tvContent.typeface = typefaceRegular
-
                     tvTitle.text = getString(R.string.app_name)
                     tvContent.text = getString(R.string.dev_milifare)
                     setContentView(view)
@@ -126,9 +122,6 @@ class SettingsActivity : AppCompatActivity() {
                     val view = layoutInflater.inflate(R.layout.dialog_changelog, LinearLayout(requireContext()), false)
                     val tvTitle: TextView = view.findViewById(R.id.tv_title)
                     val tvContent: TextView = view.findViewById(R.id.tv_content)
-
-                    tvTitle.typeface = typefaceBold
-                    tvContent.typeface = typefaceRegular
 
                     tvTitle.text = "${getString(R.string.app_name)} ${BuildConfig.VERSION_NAME}"
                     tvContent.text = MyUtils.fromHtml(MyUtils.readTextFromRaw(resources, R.raw.changelog))

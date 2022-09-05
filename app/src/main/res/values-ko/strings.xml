@@ -5,7 +5,7 @@
     <string name="discharge">전역일</string>
     <string name="goals">목표</string>
     <string name="current">현재</string>
-    <string name="run">뜀뛰기</string>
+    <string name="run">뜀걸음</string>
     <string name="situp">윗몸일으키기</string>
     <string name="pushup">팔굽혀펴기</string>
     <string name="fill_manual">또는 수동으로 입력</string>
@@ -31,7 +31,7 @@
     <string name="tag_five">다섯.</string>
     <string name="tag_six">여섯..</string>
     <string name="intro_page0_title">환영합니다.</string>
-    <string name="intro_page0_exp">대한민국 장병의 체력 검정을 위한 뜀뛰기, 팔굽혀펴기, 윗몸일으키기 기록 증진 도우미, 밀리페어를 설치해 주셔서 감사합니다.</string>
+    <string name="intro_page0_exp">대한민국 장병의 체력 검정을 위한 뜀걸음, 팔굽혀펴기, 윗몸일으키기 기록 증진 도우미, 밀리페어를 설치해 주셔서 감사합니다.</string>
     <string name="intro_page1_title">권한 허가</string>
     <string name="intro_page1_exp">날씨 정보를 가져오기 위해 위치 권한을 허용해주세요.</string>
     <string name="intro_page1_btn">위치 권한 허가</string>
@@ -43,7 +43,7 @@
     <string name="intro_page4_title">체력검정 목표</string>
     <string name="intro_page4_exp">체력검정 목표 등급을 선택해주세요.</string>
     <string name="intro_page5_title">현재 체력 입력</string>
-    <string name="intro_page5_exp">현재 가능한 뜀뛰기, 팔굽혀펴기, 윗몸일으키기 기록을 입력해주세요.</string>
+    <string name="intro_page5_exp">현재 가능한 뜀걸음, 팔굽혀펴기, 윗몸일으키기 기록을 입력해주세요.</string>
     <string name="intro_page6_title">Exam Deadline Reminder</string>
     <string name="intro_page6_exp">Unit: Minute. Select the notifications you want to receive.</string>
     <string name="nlevel">%1$d급</string>
@@ -71,5 +71,14 @@
     <string name="dev_milifare">TEAM MILIFARE</string>
     <string name="reminder">리마인더</string>
     <string name="reminder_title">오늘도 체력 증진을 위해</string>
-    <string name="reminder_msg">어제 뜀뛰기 %1$s, 팔굽혀펴기 %2$s, 윗몸일으키기 %3$s개 했어요</string>
+    <string name="reminder_msg">어제 %1$s 만에 뜀걸음, 팔굽혀펴기 %2$s개, 윗몸일으키기 %3$s개 했어요.</string>
+    <string name="reminder_msg_none">어제 운동을 하지 않았어요.</string>
+    <string name="reminder_msg_run_push">어제 %1$s만에 뜀걸음하고, 팔굽혀펴기 %2$s개 했어요.</string>
+    <string name="reminder_msg_run_sit">어제 %1$s만에 뜀걸음하고, 윗몸일으키기 %2$s개 했어요.</string>
+    <string name="reminder_msg_push_sit">어제 팔굽혀펴기 %1$s개, 윗몸일으키기 %2$s개 했어요.</string>
+    <string name="reminder_msg_run">어제 %1$s만에 뜀걸음했어요.</string>
+    <string name="reminder_msg_sit">어제 윗몸일으키기 %1$s개 했어요.</string>
+    <string name="reminder_msg_push">어제 팔굽혀펴기 %1$s개 했어요.</string>
+    <string name="touch_to_change_pic">터치하여\n사진 변경</string>
+    <string name="no_datas">데이터 없음</string>
 </resources>

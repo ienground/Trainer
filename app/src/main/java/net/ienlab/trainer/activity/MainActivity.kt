@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.*
+import net.ienlab.trainer.BuildConfig
 import net.ienlab.trainer.R
 import net.ienlab.trainer.constant.ApiKey
 import net.ienlab.trainer.constant.IntentKey
@@ -181,8 +182,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // user data on screen
-        val profileImage = Uri.parse(sharedPreferences.getString(SharedKey.PROFILE_URI, ""))
-        binding.ivProfile.setImageURI(profileImage)
+
+        sharedPreferences.getString(SharedKey.PROFILE_URI, "").let {
+            val profileImage = Uri.parse(it)
+            if (it != "") binding.ivProfile.setImageURI(profileImage)
+        }
         binding.tvNickname.text = sharedPreferences.getString(SharedKey.NICKNAME, "")
         binding.tvStart.text = dateFormat.format(startCalendar.time)
         binding.tvEnd.text = dateFormat.format(endCalendar.time)
@@ -259,6 +263,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         setData()
+
+        binding.ivProfile.setOnLongClickListener {
+            if (BuildConfig.DEBUG) startActivity(Intent(this, DataInputActivity::class.java))
+            true
+        }
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -385,16 +394,14 @@ class MainActivity : AppCompatActivity() {
                 binding.progressRun.max = goalRun.toFloat()
                 binding.progressPushup.max = goalPushup.toFloat()
                 binding.progressSitup.max = goalSitup.toFloat()
-                binding.progressRun.progress = (2f * goalRun - progressRun).let { if (it <= 0) 0f else it }
+                binding.progressRun.progress = (2f * goalRun - progressRun).let { if (it <= 0 || progressRun == 0f) 0f else it }
                 binding.progressPushup.progress = progressPushup
                 binding.progressSitup.progress = progressSitup
-                binding.tvPercentRun.text = String.format("%02d:%02d / %02d:%02d", progressRun.toInt() / 600, (progressRun.toInt() % 600) / 10, goalRun / 600, (goalRun % 600) / 10)
-                binding.tvPercentPushup.text = "${numberFormat.format(progressPushup)} / ${numberFormat.format(goalPushup)}"
-                binding.tvPercentSitup.text = "${numberFormat.format(progressSitup)} / ${numberFormat.format(goalSitup)}"
+                binding.tvPercentRun.text = if (progressRun != 0f) String.format("%02d:%02d / %02d:%02d", progressRun.toInt() / 600, (progressRun.toInt() % 600) / 10, goalRun / 600, (goalRun % 600) / 10) else String.format("- / %02d:%02d", goalRun / 600, (goalRun % 600) / 10)
+                binding.tvPercentPushup.text = "${if (progressPushup != 0f) numberFormat.format(progressPushup) else "-"} / ${numberFormat.format(goalPushup)}"
+                binding.tvPercentSitup.text = "${if (progressSitup != 0f) numberFormat.format(progressSitup) else "-"} / ${numberFormat.format(goalSitup)}"
                 binding.tvDateCurrent.text = currentLevel.let { if (it == 3) getString(R.string.special_level) else if (it == 4) getString(R.string.failed) else getString(R.string.nlevel, 3 - it.toInt()) }
             }
-
-
         }
     }
 }

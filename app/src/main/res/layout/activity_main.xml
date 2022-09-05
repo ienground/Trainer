@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
         android:fitsSystemWindows="true">
 
         <androidx.cardview.widget.CardView
@@ -103,7 +104,7 @@
             android:id="@+id/iv_profile"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@color/colorAccent"
+            android:src="@drawable/img_default_profile"
             android:layout_margin="@dimen/usual_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/group_weather" />

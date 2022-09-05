@@ -53,7 +53,7 @@
     <string name="special_level">Special</string>
 
     <string name="permission_granted_msg">Please grant permission.</string>
-    <string name="dateFormat">yyyy.M.d</string>
+    <string name="dateFormat">MMM dd, yyyy</string>
     <string name="dateLongFormat">EEE, MMM dd, yyyy</string>
     <string name="dateAxisFormat">MMM dd</string>
     <string name="err_name_not_filled">Please fill out your name.</string>
@@ -72,4 +72,13 @@
     <string name="reminder">Reminder</string>
     <string name="reminder_title">To improve your stamina today</string>
     <string name="reminder_msg">Yesterday you did running: %1$s, %2$s of push-ups and %3$s of sit-ups.</string>
+    <string name="reminder_msg_none">Yesterday you didn\'t running, push-ups and sit-ups.</string>
+    <string name="reminder_msg_run_push">Yesterday you did running: %1$s, and %2$s of push-ups.</string>
+    <string name="reminder_msg_run_sit">Yesterday you did running: %1$s, and %2$s of sit-ups.</string>
+    <string name="reminder_msg_push_sit">Yesterday you did %1$s of push-ups and %2$s of sit-ups.</string>
+    <string name="reminder_msg_run">Yesterday you did running: %1$s.</string>
+    <string name="reminder_msg_sit">Yesterday you did %1$s of sit-ups.</string>
+    <string name="reminder_msg_push">Yesterday you did %1$s of push-ups.</string>
+    <string name="touch_to_change_pic">Touch to\nchange picture</string>
+    <string name="no_datas">No chart data available.</string>
 </resources>

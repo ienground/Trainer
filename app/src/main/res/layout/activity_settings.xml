@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorBackground"
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.Toolbar
@@ -37,6 +38,7 @@
                     android:text="@string/settings"
                     android:textColor="@color/black"
                     android:textSize="32sp"
+                    android:fontFamily="@font/pretendard_black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
