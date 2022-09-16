@@ -64,21 +64,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/pretendard"
-                android:gravity="center"
-                android:text="@string/touch_to_change_pic"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="12sp"
+                android:src="@drawable/ic_circular_segment"
+                app:tint="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                 app:layout_constraintEnd_toEndOf="@id/iv_profile"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/iv_profile"
-                app:layout_constraintTop_toTopOf="@id/iv_profile"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit"
+                android:textColor="@color/white"
+                android:fontFamily="@font/pretendard_black"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintStart_toStartOf="@id/iv_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_profile"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile" />
 
             <TextView
                 android:id="@+id/tv_title"

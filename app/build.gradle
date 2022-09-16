@@ -14,8 +14,8 @@ android {
         applicationId "net.ienlab.trainer"
         minSdk 27
         targetSdk 32
-        versionCode 6
-        versionName "1.0.3"
+        versionCode 9
+        versionName "1.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -68,6 +68,7 @@ class RunTimerService : Service() {
             setContentTitle(getString(R.string.running_noti_title))
             setContentText(String.format("%02d:%02d", second / 600, (second % 600) / 10))
             setSmallIcon(R.drawable.ic_run)
+            setOnlyAlertOnce(true)
             color = ContextCompat.getColor(applicationContext, R.color.colorAccent)
 
         }.build())

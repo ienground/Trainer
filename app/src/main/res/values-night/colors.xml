@@ -6,6 +6,7 @@
 <!--    <color name="colorAccent">#B58E81</color>-->
 <!--    <color name="colorAccentDark">#6A4539</color>-->
 <!--    <color name="colorAccentAlpha">#55B58E81</color>-->
+    <color name="background">#121212</color>
 
     <color name="white">#282828</color>
     <color name="black">#EAEAEA</color>

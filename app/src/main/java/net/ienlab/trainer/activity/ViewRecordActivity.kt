@@ -19,6 +19,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.utils.EntryXComparator
 import kotlinx.coroutines.*
 import net.ienlab.trainer.R
 import net.ienlab.trainer.adapter.ViewRecordAdapter
@@ -107,6 +108,8 @@ class ViewRecordActivity : AppCompatActivity() {
                             entries.add(Entry(time.timeInMillis.toFloat(), entity.count.toFloat()))
                         }
                     }
+
+                    Collections.sort(entries, EntryXComparator())
 
                     val data = LineDataSet(entries, "label")
                     val lineData = LineData()

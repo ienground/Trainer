@@ -81,4 +81,5 @@
     <string name="reminder_msg_push">어제 팔굽혀펴기 %1$s개 했어요.</string>
     <string name="touch_to_change_pic">터치하여\n사진 변경</string>
     <string name="no_datas">데이터 없음</string>
+    <string name="edit">수정</string>
 </resources>

@@ -81,4 +81,5 @@
     <string name="reminder_msg_push">Yesterday you did %1$s of push-ups.</string>
     <string name="touch_to_change_pic">Touch to\nchange picture</string>
     <string name="no_datas">No chart data available.</string>
+    <string name="edit">수정</string>
 </resources>

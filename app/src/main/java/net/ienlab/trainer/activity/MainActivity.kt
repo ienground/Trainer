@@ -265,7 +265,8 @@ class MainActivity : AppCompatActivity() {
         setData()
 
         binding.ivProfile.setOnLongClickListener {
-            if (BuildConfig.DEBUG) startActivity(Intent(this, DataInputActivity::class.java))
+//            if (BuildConfig.DEBUG)
+                startActivity(Intent(this, DataInputActivity::class.java))
             true
         }
     }
@@ -337,12 +338,13 @@ class MainActivity : AppCompatActivity() {
             val cutlineSitup = listOf(sharedPreferences.getInt(SharedKey.SITUP_LVS, 0), sharedPreferences.getInt(SharedKey.SITUP_LV1, 0), sharedPreferences.getInt(SharedKey.SITUP_LV2, 0), sharedPreferences.getInt(SharedKey.SITUP_LV3, 0))
 
             cutlineRun.reversed().forEachIndexed { index, i ->
-                if (progressRun <= i) {
+                if (progressRun <= i * 10) {
                     currentRunLevel = 3 - index
                 }
-                if (todayRunMin <= i) {
+                if (todayRunMin <= i * 10) {
                     todayRunLevel = 3 - index
                 }
+                Log.d(TAG, "$progressRun $todayRunMin $i")
             }
 
             cutlinePushup.reversed().forEachIndexed { index, i ->
@@ -381,7 +383,7 @@ class MainActivity : AppCompatActivity() {
                     time = dateSaveFormat.parse(sharedPreferences.getInt(SharedKey.SUCCESS_DATE, 20201131).toString())
                 }
                 Log.d(TAG, "S2")
-                if (calendar.get(Calendar.DAY_OF_YEAR) - successDate.get(Calendar.DAY_OF_YEAR) <= 7) {
+                if (calendar.get(Calendar.DAY_OF_YEAR) - successDate.get(Calendar.DAY_OF_YEAR) >= 7) {
                     currentLevel = sharedPreferences.getInt(SharedKey.SUCCESS_LV, 4)
                     Log.d(TAG, "S3")
                 }
@@ -400,7 +402,7 @@ class MainActivity : AppCompatActivity() {
                 binding.tvPercentRun.text = if (progressRun != 0f) String.format("%02d:%02d / %02d:%02d", progressRun.toInt() / 600, (progressRun.toInt() % 600) / 10, goalRun / 600, (goalRun % 600) / 10) else String.format("- / %02d:%02d", goalRun / 600, (goalRun % 600) / 10)
                 binding.tvPercentPushup.text = "${if (progressPushup != 0f) numberFormat.format(progressPushup) else "-"} / ${numberFormat.format(goalPushup)}"
                 binding.tvPercentSitup.text = "${if (progressSitup != 0f) numberFormat.format(progressSitup) else "-"} / ${numberFormat.format(goalSitup)}"
-                binding.tvDateCurrent.text = currentLevel.let { if (it == 3) getString(R.string.special_level) else if (it == 4) getString(R.string.failed) else getString(R.string.nlevel, 3 - it.toInt()) }
+                binding.tvDateCurrent.text = currentLevel.let { if (it == 0) getString(R.string.special_level) else if (it == 4) getString(R.string.failed) else getString(R.string.nlevel, it) }
             }
         }
     }

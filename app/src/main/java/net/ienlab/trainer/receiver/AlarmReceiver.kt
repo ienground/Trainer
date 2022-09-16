@@ -33,6 +33,9 @@ class AlarmReceiver: BroadcastReceiver() {
 
         val numberFormat = DecimalFormat("###,###")
         GlobalScope.launch(Dispatchers.IO) {
+            Calendar.getInstance().get(Calendar.HOUR_OF_DAY).let {
+                if (it !in 17..18) return@launch
+            }
             val calendar = Calendar.getInstance().apply {
                 set(Calendar.HOUR_OF_DAY, 0)
                 set(Calendar.MINUTE, 0)
